@@ -813,4 +813,6 @@ Filters.erode = function(pixels) {
 
 if (typeof require != 'undefined') {
   exports.Filters = Filters;
+} else if (typeof window != 'undefined') {
+  window.Filters = Filters;
 }
