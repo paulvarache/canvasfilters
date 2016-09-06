@@ -1,4 +1,4 @@
-Filters = {};
+var Filters = {};
 
 if (typeof Float32Array == 'undefined') {
   Filters.getFloat32Array =
@@ -813,6 +813,4 @@ Filters.erode = function(pixels) {
 
 if (typeof require != 'undefined') {
   exports.Filters = Filters;
-} else if (typeof window != 'undefined') {
-  window.Filters = Filters;
 }
