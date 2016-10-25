@@ -20,7 +20,7 @@ if (typeof Float32Array == 'undefined') {
 if (typeof document != 'undefined') {
   Filters.tmpCanvas = document.createElement('canvas');
   Filters.tmpCtx = Filters.tmpCanvas.getContext('2d');
-  
+
   Filters.getPixels = function(img) {
     var c,ctx;
     if (img.getContext) {
@@ -38,7 +38,7 @@ if (typeof document != 'undefined') {
   Filters.createImageData = function(w, h) {
     return this.tmpCtx.createImageData(w, h);
   };
-  
+
   Filters.getCanvas = function(w,h) {
     var c = document.createElement('canvas');
     c.width = w;
@@ -65,13 +65,12 @@ if (typeof document != 'undefined') {
   };
 
 } else {
-
-  onmessage = function(e) {
-    var ds = e.data;
-    if (!ds.length) {
-      ds = [ds];
-    }
-    postMessage(Filters.runPipeline(ds));
+  this.onmessage = function(e) {
+      var ds = e.data;
+      if (!ds.length) {
+          ds = [ds];
+      }
+      postMessage(Filters.runPipeline(ds));
   };
 
   Filters.createImageData = function(w, h) {
@@ -795,7 +794,7 @@ Filters.erode = function(pixels) {
       var srcOff = (sy*sw+sx)*4;
       var v = 0;
       if (src[srcOff] == 0) {
-        if (src[(sy*sw+Math.max(0,sx-1))*4] == 0 && 
+        if (src[(sy*sw+Math.max(0,sx-1))*4] == 0 &&
             src[(Math.max(0,sy-1)*sw+sx)*4] == 0) {
             v = 255;
         }
